@@ -86,3 +86,6 @@ h1 {
 .spil a:nth-child(3) {
 	background-color:blue;
 }
+input {
+	text-align:center;
+}
