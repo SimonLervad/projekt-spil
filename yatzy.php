@@ -3,12 +3,12 @@
 	<div class="header">
 		<h2>You are playing yatzy</h2>
 	</div>
-	<button onclick="lock()">1</button> <br>
-	<button onclick="lock()">2</button> <br>
-	<button onclick="lock()">3</button> <br>
-	<button onclick="lock()">4</button> <br>
-	<button onclick="lock()">5</button> <br>
-	<button onclick="lock()">6</button> <br>
+	<button onclick="lock()" id="t1">1</button> <br>
+	<button onclick="lock()" id="t2">2</button> <br>
+	<button onclick="lock()" id="t3">3</button> <br>
+	<button onclick="lock()" id="t4">4</button> <br>
+	<button onclick="lock()" id="t5">5</button> <br>
+	<button onclick="lock()" id="t6">6</button> <br>
 </div>
 
 <script>
@@ -52,6 +52,7 @@ document.write(' 4ere: ' + t4 + '<br>');
 document.write(' 5ere: ' + t5 + '<br>');
 document.write(' 6ere: ' + t6 + '<br>');
 
+// lås terninger
 function lock() {
 	
 }
