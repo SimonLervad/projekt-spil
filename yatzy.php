@@ -41,9 +41,9 @@ switch (flip) {
 
 document.write('1ere: ' + t1);
 document.write('2ere: ' + t2);
-console.log('3ere: ' + t3);
-console.log('4ere: ' + t4);
-console.log('5ere: ' + t5);
-console.log('6ere: ' + t6);
+document.write('3ere: ' + t3);
+document.write('4ere: ' + t4);
+document.write('5ere: ' + t5);
+document.write('6ere: ' + t6);
 
 </script>
