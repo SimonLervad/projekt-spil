@@ -3,6 +3,12 @@
 	<div class="header">
 		<h2>You are playing yatzy</h2>
 	</div>
+	<button onclick="lock()">1</button> <br>
+	<button>2</button> <br>
+	<button>3</button> <br>
+	<button>4</button> <br>
+	<button>5</button> <br>
+	<button>6</button> <br>
 </div>
 
 <script>
@@ -39,11 +45,16 @@ switch (flip) {
 	i++;
 }
 
-document.write('1ere: ' + t1);
-document.write('2ere: ' + t2);
-document.write('3ere: ' + t3);
-document.write('4ere: ' + t4);
-document.write('5ere: ' + t5);
-document.write('6ere: ' + t6);
+document.write(' 1ere: ' + t1 + '<br>');
+document.write(' 2ere: ' + t2 + '<br>');
+document.write(' 3ere: ' + t3 + '<br>');
+document.write(' 4ere: ' + t4 + '<br>');
+document.write(' 5ere: ' + t5 + '<br>');
+document.write(' 6ere: ' + t6 + '<br>');
+
+function lock() {
+	alert('yAY');
+}
+
 
 </script>
