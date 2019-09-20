@@ -4,11 +4,11 @@
 		<h2>You are playing yatzy</h2>
 	</div>
 	<button onclick="lock()">1</button> <br>
-	<button>2</button> <br>
-	<button>3</button> <br>
-	<button>4</button> <br>
-	<button>5</button> <br>
-	<button>6</button> <br>
+	<button onclick="lock()">2</button> <br>
+	<button onclick="lock()">3</button> <br>
+	<button onclick="lock()">4</button> <br>
+	<button onclick="lock()">5</button> <br>
+	<button onclick="lock()">6</button> <br>
 </div>
 
 <script>
@@ -53,7 +53,7 @@ document.write(' 5ere: ' + t5 + '<br>');
 document.write(' 6ere: ' + t6 + '<br>');
 
 function lock() {
-	alert('yAY');
+	
 }
 
 
