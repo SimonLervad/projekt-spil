@@ -13,6 +13,7 @@
 	const gues = function() {
 		if (i === 10) {
 			document.getElementById("dead").innerHTML = "Du har tabt <br> spil igen";
+			document.getElementById("dead").style.display = "flex";
 		} else if (i < 10) {
 			i++;
 		}

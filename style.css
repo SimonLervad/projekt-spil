@@ -89,3 +89,26 @@ h1 {
 input {
 	text-align:center;
 }
+#dead {
+	background-color:red;
+	display:flex;
+	position:fixed;
+	justify-content: space-around;
+	flex-direction: column;
+	left:50%;
+	top:40%;
+	width:1000px;
+	height:500px;
+	margin-top:-250px;
+	margin-left:-500px;
+	border: 5px solid black;
+	border-radius:15px;
+	font-size:50px;
+	text-decoration: none;
+	color:#232323;
+	transition-duration: 0.5s;
+	display:none;
+}
+#dead:hover {
+	box-shadow: inset 1000px 0 0 0 green;
+}
