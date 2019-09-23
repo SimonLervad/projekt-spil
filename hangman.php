@@ -4,11 +4,19 @@
 	<div class="header">
 		<h2>You are playing Hangman</h2>
 		<p>Indtast et bogstav og se om du kan løse ordet inden 8 forsøg<p>
+	</div>
+	<div class="center">
 		<button id="start" onclick="getNewWord()" type="button">Start nyt spil</button>
+		<button id="ned" onclick="antalFors()" type="button">nedtæller</button>
 		<p id="length"></p>
 		<p id="hiddenWord"></p>
+		<p id="hiddenWordUnderline"></p>
 	</div>
-	<div>
+
+	<div class="center">
+		<p>Antal forsøg tilbage:</p>
+		<p id="antalfor">8</p>
+	<div class="center">
 		<p id="wordList" onclick="addWord()">?</p>
 	</div>
 	<div id="alfabetet">
@@ -45,6 +53,9 @@
 
 </div>
 <style>
+.center {
+	text-align: center;
+}
 #alfabetet {
 	display: flex;
 	justify-content: space-around;
@@ -58,6 +69,14 @@
 
 <script>
 
+/**
+ * nQuery, *the* JS Framework
+ */
+var $ = function (foo) {
+    return document.getElementById(foo);    // save keystrokes
+}
+
+
 const hangWord = ['svømmehal', 'dronning', 'dannebrog', 'chokoladekage', 'marathon'];
 
 //Tilføj nye ord til hangWord, aktiv ved klip på ?
@@ -70,23 +89,44 @@ function addWord() {
 function getNewWord(){
 	let randomItem = hangWord[Math.floor(Math.random()*hangWord.length)];
 	let n = randomItem.length;
+
 	document.getElementById("length").innerHTML = n;
 
 //Udskriv hvor mange tegn der er på det tilfældige ord
-	for (var i = 0; i < randomItem.length; i++) {
+for (var i = 0; i < randomItem.length; i++) {
 
 	console.log(randomItem.charAt(i));
-
-  document.getElementById("hiddenWord").innerHTML = (randomItem.charAt(i));
+	document.getElementById("hiddenWord").innerHTML = (randomItem.charAt(i));
+	document.getElementById("hiddenWordUnderline").innerHTML = '_';
+}
 }
 
+
+//Antal forsøg tilbage
+let fors = 8;
+function antalFors(){
+		if (fors > 1) {
+			fors -= 1;
+			return fors;
+		}
+		else {
+			return 'ikke flere forsøg, spillet er tabt';
+		}
 }
+//Aktiveres ved tryk på knappen med id ned
+document.getElementById("ned").addEventListener("click", function(){
+document.getElementById("antalfor").innerHTML = antalFors();
+});
 
 
-
-
-
-
+console.log(antalFors());
+console.log(antalFors());
+console.log(antalFors());
+console.log(antalFors());
+console.log(antalFors());
+console.log(antalFors());
+console.log(antalFors());
+console.log(antalFors());
 
 
 
