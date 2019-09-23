@@ -180,3 +180,42 @@ input {
 	box-shadow: inset 249.5px 0 0 0 green;
 	color:#232323;
 }
+.container {
+    height: 300px;
+    width: 100%;
+}
+
+#display {
+    width: 100%;
+    font-size: 72px;
+    text-align: center;
+    margin: 0px auto;
+}
+#rules {
+	background-color:#f2f2f2;
+	z-index:100;
+	position:fixed;
+	left:50%;
+	top:40%;
+	width:1000px;
+	height:500px;
+	margin-top:-250px;
+	padding:100px 50px;
+	margin-left:-500px;
+	border:5px solid black;
+	display:block;
+}
+.row:nth-child(1) {width:60%;}
+.row {width:40%;padding:25px;text-align:left;}
+.buttons button {
+	width:400px;
+	padding:20px;
+	background-color:green;
+	border:1px solid black;
+	transition-duration: 0.5s;
+	font-size:25px;
+}
+.buttons button:hover {
+	box-shadow: inset 400px 0 0 0 black;
+	color:green;
+}
