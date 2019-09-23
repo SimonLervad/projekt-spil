@@ -112,3 +112,71 @@ input {
 #dead:hover {
 	box-shadow: inset 1000px 0 0 0 green;
 }
+#winner {
+	background-color:#f2f2f2;
+	position:fixed;
+	left:50%;
+	top:40%;
+	width:1000px;
+	height:500px;
+	margin-top:-250px;
+	padding:50px;
+	margin-left:-500px;
+	font-size:30px;
+	text-decoration: none;
+	color:#232323;
+	transition-duration: 0.5s;
+	border:5px solid black;
+	border-radius:15px;
+	display:none;
+}
+#winner a {
+	text-decoration: none;
+	color:green;
+	padding:10px;
+	display:block;
+	width:300px;
+	transition-duration: 0.5s;
+}
+#winner a:nth-child(1) {
+	background-color:green;
+	color:#232323;
+	padding:10px 50px;
+}
+#winner a:hover {
+	color:green;
+	box-shadow: inset 300px 0 0 0 #232323;
+}
+.flex {display:flex;justify-content: space-around;}
+#warning {
+	background-color:red;
+	z-index:100;
+	position:fixed;
+	left:50%;
+	top:40%;
+	width:1000px;
+	height:500px;
+	margin-top:-250px;
+	padding:100px 50px;
+	margin-left:-500px;
+	font-size:30px;
+	display:flex;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	display:none;
+}
+#warning button {
+	width:250px;
+	border:1px solid black;
+	background-color:#232323;
+	color:green;
+	font-size:30px;
+	text-align:center;
+	margin:50px auto;
+	transition-duration: 0.5s;
+}
+#warning button:hover {
+	box-shadow: inset 249.5px 0 0 0 green;
+	color:#232323;
+}
