@@ -17,7 +17,7 @@
 			<div id="winner">
 				<h2>Tillykke</h2><br>
 				<p>
-					Du har gættet det rigtige tal!
+					Du har gættet det rigtige tal
 					<br>
 					Indtast dit navn og gem din highscore. Udfordrer dine venner og se om de kan slå den
 				</p><br>
