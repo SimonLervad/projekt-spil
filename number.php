@@ -166,7 +166,7 @@ startStop = function() {
 		$("knap").addEventListener('click', validate);	
 		$("knap").addEventListener('click', gues);
 		$('save').addEventListener('click', save);
-		document.write($())
+		
 	}
 	window.addEventListener('load', init);
 </script>
