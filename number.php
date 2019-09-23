@@ -21,7 +21,7 @@
 					<div id="score" class="row">
 						<h3>Highscore</h3>
 						<p id="highsscores">
-							
+							<script type="text/javascript"></script>
 						</p>
 					</div>
 				</div>
@@ -159,14 +159,16 @@ startStop = function() {
     		window.alert('ugyldigt navn');
 			return false;
 		}
-		createCookie($('name').value, $('time').value, 0.0006844);
+		createCookie(Cookie, $('name').value, $('time').value, 0.0126844);
 		return true;
 	}
+	var amount = document.cookies;
+	
 	const init = function() {
 		$("knap").addEventListener('click', validate);	
 		$("knap").addEventListener('click', gues);
 		$('save').addEventListener('click', save);
-		
+		document.getElementById('highscores').innerHTML = amount;
 	}
 	window.addEventListener('load', init);
 </script>
