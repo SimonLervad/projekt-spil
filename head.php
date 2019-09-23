@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Spil portalen</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="cookie.js"></script>
 </head>
 <body>
 	<header>
