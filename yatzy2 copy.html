@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Yatzy</title>
+    <style>
+        * {
+          font-family: Helvetica, Arial, sans-serif;
+        }
+        #yatzy{
+            text-align: center;
+        }
+        button {
+          background-color: rgb(82, 186, 179);
+          border-radius: 6px;
+          border: none;
+          color: rgb(255, 255, 255);
+          padding: 10px;
+          text-transform: uppercase;
+          width: 200px;
+          cursor: pointer;
+          text-align: center;
+        }
+
+        table, th, td {
+            border: 1px #000 solid;
+            padding: 5px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        span {
+            float: right;
+        }
+        </style>
+</head>
+<body>
+        <div id="yatzy">
+            <div class="header">
+                <h2>You are playing yatzy</h2>
+            </div>
+            
+            <button id="buttonRoll">Kast terningerne</button> <br><br>
+
+            <button id="saveNo1">Behold terning nr. 1</button>
+            <button id="saveNo2">Behold terning nr. 2</button>
+            <button id="saveNo3">Behold terning nr. 3</button>
+            <button id="saveNo4">Behold terning nr. 4</button>
+            <button id="saveNo5">Behold terning nr. 5</button>
+        
+        
+        <p>Dine terninger er<p>
+        <p id="yourDice"> <p>
+        <p>Du har gemt: <p>
+        <p id="savedDice"> <p>
+            </div>
+            <br>
+
+            <table>
+                    <tr>
+                      <th>Maxiumum points</th>
+                      <th id="yourName">Navn</th>
+                    </tr>
+                    <tr>
+                      <td>1'ere <span>5</span></td>
+                      <td id="one">test</td>
+                    </tr>
+                    <tr>
+                        <td>2'ere <span>10</span></td>
+                        <td id="two"> </td>
+                    </tr>
+                    <tr>
+                        <td>3'ere <span>15</span></td>
+                        <td id="three"> </td>
+                    </tr>
+                    <tr>
+                        <td>4'ere <span>20</span></td>
+                        <td id="four"> </td>
+                     </tr>
+                     <tr>
+                            <td>5'ere <span>25</span></td>
+                            <td id="five"> </td>
+                        </tr>
+                        <tr>
+                            <td>6'ere <span>30</span></td>
+                            <td id="six"> </td>
+                        </tr>
+                    <tr>
+                        <td><b>SUM</b></td>
+                        <th id="upSum"> </th>
+                    </tr>
+                    <tr>
+                        <td><b>Bonus</b></td>
+                        <th id="bonus"> </th>
+                    </tr>
+                    <tr>
+                        <td>1 par <span>12</span></td>
+                        <td id="onePair"> </td>
+                    </tr>
+                    <tr>
+                        <td>2 par <span>22</span></td>
+                        <td id="twoPair"> </td>
+                    </tr>
+                    <tr>
+                        <td>3 ens <span>18</span></td>
+                        <td id="threePair"> </td>
+                    </tr>
+                    <tr>
+                        <td>4 ens <span>24</span></td>
+                        <td id="fourPair"> </td>
+                    </tr>
+                    <tr>
+                        <td>Lille straight <span>15</span></td>
+                        <td id="small"> </td>
+                    </tr>
+                    <tr>
+                        <td>Stor straight <span>20</span></td>
+                        <td id="big"> </td>
+                    </tr>
+                    <tr>
+                        <td>Hus <span>28</span></td>
+                        <td id="house"> </td>
+                    </tr>
+                    <tr>
+                        <td>Chance <span>30</span></td>
+                        <td id="chance"> </td>
+                    </tr>
+                    <tr>
+                        <td>YATZY <span>50</span></td>
+                        <td id="yatzy"> </td>
+                    </tr>
+                    <tr>
+                        <td><b>SUM</b></td>
+                        <th id="downSum"> </th>
+                    </tr>
+                  </table>
+        
+        <script>
+        'use strict';
+        
+        //get a number beteewn 1-6
+        function rollDie() {
+          return Math.floor(Math.random() * 6) + 1; 
+        }
+        
+        var terninger = [0, 0, 0, 0, 0]; //Antal terninger
+        
+        var results = []; //resultatet for terningerne 
+        
+        var chosen = [] //dine terninger
+        
+        //når man trykker på knappen kommer der 1 terning kast med 5 terninger
+        //Udfordringern var, at når man trykkede på den flere gange, forsatte eventlistner med at give tal, 
+        //derfor skulle der evetlisntener slettes igen
+        document.getElementById("buttonRoll").addEventListener("click", button);
+
+        function button() {
+          //giver 5 terning tal
+            for (var i = 0; i <= 4; i++) {
+            var result = rollDie();
+            terninger[result] = terninger[result];
+            results.unshift(result);
+            var resultInt = results.join(', ');
+            }
+            
+            document.getElementById("yourDice").innerHTML += resultInt;
+            document.getElementById("buttonRoll").removeEventListener('click', button); 
+            
+        };
+        
+        //Viser nr. 1 i et array
+        /* Viser det kun vha. console.log - blev løst ved at lave eventlistneren om, 
+        da der var blevet glemt at skrive, hvor henne den skulel skrives ud
+        Der er problemer med, hvordan man skal få den til at gælde på alle knapperne
+         */
+
+         // kunne evt. gøres kortere ved at anvende loop, skal vi evt. finde ud af hvordan vi gør. - Tinna
+        document.getElementById("saveNo1").addEventListener("click", no1);
+        document.getElementById("saveNo2").addEventListener("click", no1);
+        document.getElementById("saveNo3").addEventListener("click", no1);
+        document.getElementById("saveNo4").addEventListener("click", no1);
+        document.getElementById("saveNo5").addEventListener("click", no1);
+
+            function no1(e) {
+                let i = e.target.id.charAt(6) - 1;
+                chosen[i] = results[i];
+                document.getElementById("savedDice").innerHTML = " ";
+                for (i = 0; i < chosen.length; i++) {
+                    document.getElementById("savedDice").innerHTML += chosen[i] + ' ';
+                    if (!chosen[i]){
+                        document.getElementById("savedDice").innerHTML = " ";
+                    }
+                }
+                document.getElementById("saveNo1").removeEventListener('click', no1); 
+            } 
+            
+       
+
+
+           
+            //Der er lavet regnestykke for den øverste del
+           var upSum = function(){
+               one + two + three + four + five + six;
+               
+           }
+           document.getElementById("upSum").innerHTML = upSum();
+
+
+        //Der er lavet regnestykke for den nederste del
+           var downSum = function(){
+            upSum + bonus + onePair + twoPair + threePair + fourPair + small + big + chance + yatzy;
+           }
+           document.getElementById("downSum").innerHTML = downSum();
+
+
+        </script>
+</body>
+</html>

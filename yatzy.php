@@ -1,61 +1,95 @@
 <?php include 'head.php'?>
+
+
 <div id="yatzy">
 	<div class="header">
-		<h2>You are playing yatzy</h2>
+		<h2>You are playing Yatzy</h2>
 	</div>
-	<button onclick="lock()" id="t1">1</button> <br>
-	<button onclick="lock()" id="t2">2</button> <br>
-	<button onclick="lock()" id="t3">3</button> <br>
-	<button onclick="lock()" id="t4">4</button> <br>
-	<button onclick="lock()" id="t5">5</button> <br>
-	<button onclick="lock()" id="t6">6</button> <br>
+	<button id="btn" onclick="clicks(); roll();">Slå terning</button>
+
+	<div id="dice1" class="dice">0</div>
+	<div id="dice2" class="dice">0</div>
+	<div id="dice3" class="dice">0</div>
+	<div id="dice4" class="dice">0</div>
+	<div id="dice5" class="dice">0</div>
+
+
+
+	<h2>Samlet sum</h2>
+	<h2 id="total"></h2>
+	<h2 id="yatzy1"></h2>
+	<h2 id="counter">Antal slag</h2>
+	<h2>Du har slået antal gange: <h2>
+	<h2 id="displayTal"></h2>
+
+
+
+
 </div>
+<!--
+<style>
 
+div {
+	float: left;
+	width: 40px;
+	border: black 1px solid;
+	padding: 5px;
+	text-align: center;
+	margin: 5px;
+}
+
+button {
+	height: 50px;
+	width: 40px;
+}
+
+</style>
+-->
 <script>
-'use strict';
-// antal øjne
-let t1 = 0;
-let t2 = 0;
-let t3 = 0;
-let t4 = 0;
-let t5 = 0;
-let t6 = 0;
 
-let i = 0;
+function roll() {
+	let die1 = document.getElementById('dice1');
+	let die2 = document.getElementById('dice2');
+	let die3 = document.getElementById('dice3');
+	let die4 = document.getElementById('dice4');
+	let die5 = document.getElementById('dice5');
 
-// slå med terninger
-while (i < 5) {
-let flip = Math.floor((Math.random() * 6 + 1));
-switch (flip) {
-	case 1:
-        t1++;
-        break;
-    case 2:
-        t2++;
-        break;
-    case 3:
-        t3++;
-        break;
-    default:
-        t4++;
-        break;
-    case 5:
-        t5++;
+	let tot = document.getElementById('total'); //viser samlet points
+	let yat = document.getElementById('yatzy1'); // viser hvis du får yatzy
+
+	// 5 forskellige numre fra 1 til 6
+	let diceOne = (Math.floor(Math.random() * 6) + 1);
+	let diceTwo = (Math.floor(Math.random() * 6) + 1);
+	let diceThree = (Math.floor(Math.random() * 6) + 1);
+	let diceFour = (Math.floor(Math.random() * 6) + 1);
+	let diceFive = (Math.floor(Math.random() * 6) + 1);
+
+	let total = diceOne + diceTwo + diceThree + diceFour + diceFive;
+
+
+	if(diceOne === diceTwo && diceTwo === diceThree && diceThree === diceFour && diceFour === diceFive) {
+		yat.innerHTML = 'YATZY';
+	} else {
+		yat.innerHTML = '';
 	}
-	i++;
+
+
+	//Viser værdi
+	die1.innerHTML = diceOne;
+	die2.innerHTML = diceTwo;
+	die3.innerHTML = diceThree;
+	die4.innerHTML = diceFour;
+	die5.innerHTML = diceFive;
+	tot.innerHTML = total;
 }
 
-document.write(' 1ere: ' + t1 + '<br>');
-document.write(' 2ere: ' + t2 + '<br>');
-document.write(' 3ere: ' + t3 + '<br>');
-document.write(' 4ere: ' + t4 + '<br>');
-document.write(' 5ere: ' + t5 + '<br>');
-document.write(' 6ere: ' + t6 + '<br>');
+let count = 0;
 
-// lås terninger
-function lock() {
-	
+function clicks() {
+	count++;
+	let button = document.getElementById('btn');
+	let display = document.getElementById('displayTal');
+	display.innerHTML = count;
 }
-
 
 </script>
