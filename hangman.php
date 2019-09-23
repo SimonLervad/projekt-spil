@@ -6,19 +6,59 @@
 		<p>Indtast et bogstav og se om du kan løse ordet inden 8 forsøg<p>
 		<button id="start" onclick="getNewWord()" type="button">Start nyt spil</button>
 		<p id="length"></p>
+		<p id="hiddenWord"></p>
 	</div>
 	<div>
 		<p id="wordList" onclick="addWord()">?</p>
-
-
-
+	</div>
+	<div id="alfabetet">
+		<p>A</p>
+		<p>B</p>
+	  <p>C</p>
+		<p>D</p>
+		<p>E</p>
+		<p>F</p>
+		<p>G</p>
+		<p>H</p>
+		<p>I</p>
+		<p>J</p>
+		<p>K</p>
+		<p>L</p>
+		<p>M</p>
+		<p>N</p>
+		<p>O</p>
+		<p>P</p>
+		<p>Q</p>
+		<p>R</p>
+		<p>S</p>
+		<p>T</p>
+		<p>S</p>
+		<p>U</p>
+		<p>V</p>
+		<p>W</p>
+		<p>X</p>
+		<p>Y</p>
+		<p>Z</p>
+		<p>Æ</p>
+		<p>Ø</p>
 	</div>
 
 </div>
+<style>
+#alfabetet {
+	display: flex;
+	justify-content: space-around;
+}
+#wordList {
+	opacity: .1;
+}
+
+
+</style>
 
 <script>
 
-const hangWord = ['svømmehal', 'dronning', 'dannebrog', 'chokoladekage', 'Marathon']
+const hangWord = ['svømmehal', 'dronning', 'dannebrog', 'chokoladekage', 'marathon'];
 
 //Tilføj nye ord til hangWord, aktiv ved klip på ?
 function addWord() {
@@ -26,22 +66,21 @@ function addWord() {
 	document.getElementById("wordList").innerHTML = hangWord;
 };
 
-//Vælg et tilfældigt ord fra hangWord og udskriv hvor mange tegn
+//Vælg et tilfældigt ord fra hangWord
 function getNewWord(){
 	let randomItem = hangWord[Math.floor(Math.random()*hangWord.length)];
 	let n = randomItem.length;
-	let i = 0;
-	while ( i < n ) {
-		let res = n.charAt(1);
-	}
-	document.getElementById("length").innerHTML = res;
+	document.getElementById("length").innerHTML = n;
+
+//Udskriv hvor mange tegn der er på det tilfældige ord
+	for (var i = 0; i < randomItem.length; i++) {
+
+	console.log(randomItem.charAt(i));
+
+  document.getElementById("hiddenWord").innerHTML = (randomItem.charAt(i));
 }
 
-
-
-
-
-
+}
 
 
 
