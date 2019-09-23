@@ -159,14 +159,14 @@ startStop = function() {
     		window.alert('ugyldigt navn');
 			return false;
 		}
-		createCookie($('name').value, $('time').value, 0.0034222);
+		createCookie($('name').value, $('time').value, 0.0006844);
 		return true;
 	}
 	const init = function() {
 		$("knap").addEventListener('click', validate);	
 		$("knap").addEventListener('click', gues);
 		$('save').addEventListener('click', save);
-		
+		document.write($())
 	}
 	window.addEventListener('load', init);
 </script>
