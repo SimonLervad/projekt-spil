@@ -61,15 +61,13 @@ button {
 	padding: 10px;
 	text-align: center;
 	margin: 5px;
-	background-color: lightgrey;
+	background-color: gray;
 }
 
 #text p {
 
 	text-align: center;
 }
-
-
 
 
 </style>
@@ -83,15 +81,17 @@ var $ = function (foo) {
     return document.getElementById(foo);    // save keystrokes
 }
 
-function roll() {
-	let die1 = document.getElementById('dice1');
-	let die2 = document.getElementById('dice2');
-	let die3 = document.getElementById('dice3');
-	let die4 = document.getElementById('dice4');
-	let die5 = document.getElementById('dice5');
 
-	let tot = document.getElementById('total'); //viser samlet points
-	let yat = document.getElementById('yatzy1'); // viser hvis du får yatzy
+
+function roll() {
+	let die1 = $('dice1');
+	let die2 = $('dice2');
+	let die3 = $('dice3');
+	let die4 = $('dice4');
+	let die5 = $('dice5');
+
+	let tot = $('total'); //viser samlet points
+	let yat = $('yatzy1'); // viser hvis du får yatzy
 
 	// 5 forskellige numre fra 1 til 6
 	let diceOne = (Math.floor(Math.random() * 6) + 1);
@@ -110,7 +110,6 @@ function roll() {
 		yat.innerHTML = '';
 	}
 
-
 	//Viser værdi på terning
 	die1.innerHTML = diceOne;
 	die2.innerHTML = diceTwo;
@@ -125,7 +124,6 @@ let count = 0;
 
 function clicks() {
 	if (count < 3) {
-
 			count++
 			let button = $('btn');
 			let display = $('displayTal');
@@ -137,7 +135,6 @@ function clicks() {
 }
 
 //Starter en ny omgang
-
 function nyRunde() {
 	count = 0;
 	$("dice1").innerHTML = "?";
@@ -147,34 +144,31 @@ function nyRunde() {
 	$("dice5").innerHTML = "?";
 	$("total").innerHTML = " ";
 	$("displayTal").innerHTML = "Du har ikke kastet terninger endnu";
-	$("dice1").style.backgroundColor = "lightgrey";
+	$("dice1").style.backgroundColor = "gray";
 }
 
 // Give en terning farve ved at klikke på den (først tjekker den om der er kastet min 1 gang)
 //Skal finde ud af hvordan man hhv fjerne og tilføjer eventlistner ved klik
 let filla = function(ev) {
 	if (count > 0) {
-	$("dice1").style.backgroundColor = "green";
-	$("dice1").removeEventListener(button);
+		if($("dice1").style.backgroundColor === "green") {
+			$("dice1").style.backgroundColor = "gray";
+		} else {
+			$("dice1").style.backgroundColor = "green";
+		}
+	}
+
 }
 
-let art = $(ev.target.id);
-    if (art.innerHTML !== "") {
-        while (art.firstChild) {
-            art.removeChild(art.firstChild);
-        }
-    } else {
-        let par = document.createElement("p"); // create element
-        txt = document.createTextNode(arrt[ev.target.id]); // create text
-        par.appendChild(txt); // put onto tree
-        art.appendChild(par);
-    }
-}
+
+
 
 let initialize = function() {
     $("dice1").addEventListener("click", filla);
 
 }
 window.addEventListener("load", initialize);
+
+
 
 </script>
