@@ -11,7 +11,7 @@
 	<div id="knapper">
 		<button id="btn" onclick="clicks(); roll();">Slå terninger</button>
 		<button id="gemSlag" onclick="; ;">Gem slag</button>
-		<button id="nyOmgang" onclick="nyRunde(); ;">Start ny omgang</button>
+		<button id="nyOmgang" onclick="nyRunde();">Start ny omgang</button>
 	</div>
 
 	<div id="terninger">
@@ -81,7 +81,25 @@ var $ = function (foo) {
     return document.getElementById(foo);    // save keystrokes
 }
 
+var rollthedice = function(n) {
+	return Math.floor(Math.random() * 6) + 1;
+}
 
+var play = function(arr, arrs) {
+	for (let i = 0; i < arr.length; i++) {
+		if (!arrs[i]) {
+			arr[i] = rollthedice(6);
+		}
+	}
+}
+
+const resetArrays = function(arr, arrs) {
+	for (let i = 0; i < arr.length; i++) {
+		arrs[i] = false;
+		$('dice' + (i + 1)).innerHTML = '?';
+		$('dice' + (i + 1)).style.backgroundColor = 'gray';
+	}
+}
 
 function roll() {
 	let die1 = $('dice1');
@@ -92,31 +110,21 @@ function roll() {
 
 	let tot = $('total'); //viser samlet points
 	let yat = $('yatzy1'); // viser hvis du får yatzy
-
-	// 5 forskellige numre fra 1 til 6
-	let diceOne = (Math.floor(Math.random() * 6) + 1);
-	let diceTwo = (Math.floor(Math.random() * 6) + 1);
-	let diceThree = (Math.floor(Math.random() * 6) + 1);
-	let diceFour = (Math.floor(Math.random() * 6) + 1);
-	let diceFive = (Math.floor(Math.random() * 6) + 1);
-
-	//Ligger alle terninger sammen
-	let total = diceOne + diceTwo + diceThree + diceFour + diceFive;
-
+/*
 	//Er alle terninger ens er der Yatzy
 	if(diceOne === diceTwo && diceTwo === diceThree && diceThree === diceFour && diceFour === diceFive) {
 		yat.innerHTML = 'YATZY';
 	} else {
 		yat.innerHTML = '';
 	}
-
+*/
 	//Viser værdi på terning
-	die1.innerHTML = diceOne;
-	die2.innerHTML = diceTwo;
-	die3.innerHTML = diceThree;
-	die4.innerHTML = diceFour;
-	die5.innerHTML = diceFive;
-	tot.innerHTML = total;
+	die1.innerHTML = dice[0];
+	die2.innerHTML = dice[1];
+	die3.innerHTML = dice[2];
+	die4.innerHTML = dice[3];
+	die5.innerHTML = dice[4];
+	tot.innerHTML = dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
 }
 
 //Slår terning 3 gange og giver besked hvis man ikke kan slå mere
@@ -124,7 +132,8 @@ let count = 0;
 
 function clicks() {
 	if (count < 3) {
-			count++
+		  play(dice, shadow);
+			count++;
 			let button = $('btn');
 			let display = $('displayTal');
 			display.innerHTML = "Du har kastet terningerne " + count + " " + "gange ud af 3 mulige";
@@ -137,24 +146,20 @@ function clicks() {
 //Starter en ny omgang
 function nyRunde() {
 	count = 0;
-	$("dice1").innerHTML = "?";
-	$("dice2").innerHTML = "?";
-	$("dice3").innerHTML = "?";
-	$("dice4").innerHTML = "?";
-	$("dice5").innerHTML = "?";
-	$("total").innerHTML = " ";
+	resetArrays(dice,shadow);
 	$("displayTal").innerHTML = "Du har ikke kastet terninger endnu";
-	$("dice1").style.backgroundColor = "gray";
 }
 
 // Give en terning farve ved at klikke på den (først tjekker den om der er kastet min 1 gang)
 //Skal finde ud af hvordan man hhv fjerne og tilføjer eventlistner ved klik
 let filla = function(ev) {
 	if (count > 0) {
-		if($("dice1").style.backgroundColor === "green") {
-			$("dice1").style.backgroundColor = "gray";
+		if(ev.target.style.backgroundColor === "green") {
+			shadow[ev.target.id.charAt(ev.target.id.length - 1) - 1] = false;
+			ev.target.style.backgroundColor = "gray";
 		} else {
-			$("dice1").style.backgroundColor = "green";
+			shadow[ev.target.id.charAt(ev.target.id.length - 1) - 1] = true;
+			ev.target.style.backgroundColor = "green";
 		}
 	}
 
@@ -163,8 +168,15 @@ let filla = function(ev) {
 
 
 
+let dice = [0, 0, 0, 0, 0];
+let shadow = [false, false, false, false, false];
+
 let initialize = function() {
-    $("dice1").addEventListener("click", filla);
+	$("dice1").addEventListener("click", filla);
+	$("dice2").addEventListener("click", filla);
+	$("dice3").addEventListener("click", filla);
+	$("dice4").addEventListener("click", filla);
+	$("dice5").addEventListener("click", filla);
 
 }
 window.addEventListener("load", initialize);
