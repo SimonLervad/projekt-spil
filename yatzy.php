@@ -31,6 +31,87 @@
 		<p id="displayTal">Du har ikke kastet terninger endnu</p>
 	</div>
 
+	<div>
+		<table>
+						<tr>
+							<th>Maxiumum points</th>
+							<th id="yourName">Navn</th>
+						</tr>
+						<tr>
+							<td>1'ere <span>5</span></td>
+							<td id="one"></td>
+						</tr>
+						<tr>
+								<td>2'ere <span>10</span></td>
+								<td id="two"> </td>
+						</tr>
+						<tr>
+								<td>3'ere <span>15</span></td>
+								<td id="three"> </td>
+						</tr>
+						<tr>
+								<td>4'ere <span>20</span></td>
+								<td id="four"> </td>
+						 </tr>
+						 <tr>
+										<td>5'ere <span>25</span></td>
+										<td id="five"> </td>
+								</tr>
+								<tr>
+										<td>6'ere <span>30</span></td>
+										<td id="six"> </td>
+								</tr>
+						<tr>
+								<td><b>SUM</b></td>
+								<th id="upSum"> </th>
+						</tr>
+						<tr>
+								<td><b>Bonus</b></td>
+								<th id="bonus"> </th>
+						</tr>
+						<tr>
+								<td>1 par <span>12</span></td>
+								<td id="onePair"> </td>
+						</tr>
+						<tr>
+								<td>2 par <span>22</span></td>
+								<td id="twoPair"> </td>
+						</tr>
+						<tr>
+								<td>3 ens <span>18</span></td>
+								<td id="threePair"> </td>
+						</tr>
+						<tr>
+								<td>4 ens <span>24</span></td>
+								<td id="fourPair"> </td>
+						</tr>
+						<tr>
+								<td>Lille straight <span>15</span></td>
+								<td id="small"> </td>
+						</tr>
+						<tr>
+								<td>Stor straight <span>20</span></td>
+								<td id="big"> </td>
+						</tr>
+						<tr>
+								<td>Hus <span>28</span></td>
+								<td id="house"> </td>
+						</tr>
+						<tr>
+								<td>Chance <span>30</span></td>
+								<td id="chance"> </td>
+						</tr>
+						<tr>
+								<td>YATZY <span>50</span></td>
+								<td id="yatzytabel"> </td>
+						</tr>
+						<tr>
+								<td><b>SUM</b></td>
+								<th id="downSum"> </th>
+						</tr>
+					</table>
+	</div>
+
 
 </main>
 </div>
@@ -67,6 +148,13 @@ button {
 #text p {
 
 	text-align: center;
+}
+
+table, th, td {
+		border: 1px #000 solid;
+		padding: 5px;
+		margin: 0 auto;
+		border-collapse: collapse;
 }
 
 
