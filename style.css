@@ -55,7 +55,7 @@ h1 {
 		font-size: 18px;
 		font-family: monospace;
 	}
-	#hangman p{
+	#hangman p {
 		margin: 5%;
 	}
 
@@ -74,8 +74,8 @@ h1 {
 
 	.hangmanSec{
 		width: 700px;
-		height: 600px;
-		top: 40%;
+		height: 619px;
+		top: 42%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		padding: 4%;
@@ -93,6 +93,20 @@ h1 {
 		font-size: 16px;
 	}
 	#hangman #won{
+		width: 700px;
+		height: 600px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 4%;
+		background-color: #fff;
+		border-radius: 5px;
+		position: absolute;
+		z-index: 1;
+		display:none;
+	}
+
+	#hangman #lose{
 		width: 700px;
 		height: 600px;
 		top: 50%;
