@@ -29,14 +29,7 @@ h1 {
 	width:100%;
 	height:100%;
 }
-#yatzy {
-	position:fixed;
-	top:100px;
-	left:0;
-	width:100%;
-	height:100%;
-	background-color:orange;
-}
+
 #number {
 	position:fixed;
 	top:100px;
