@@ -1,133 +1,245 @@
 <?php include 'head.php' ?>
 
 <div id="hangman">
-	<div class="header">
-		<h2>You are playing Hangman</h2>
-		<p>Indtast et bogstav og se om du kan løse ordet inden 8 forsøg<p>
+<section class="hangmanSec">
+	<div class="hangmanHeader">
+		<h2 class="center"> Du spiller hangman</h2>
+		<p class="wordList center">?</button>
+		<p class="what center">Gæt et ord vha. bogstaver. 
+		Brug tasteturet til at indtaste et bogstav. 
+		Passer bogstavet til det ordet, bliver det sat ind. <br>
+		Passer bogstavet ikke, har du 10 forsøg til at gætte det, 
+		ellers har du tabt. God fornøjelse <br>
+		Det gælder om at få færrest points<p>
 	</div>
+	
 	<div class="center">
-		<button id="start" onclick="getNewWord()" type="button">Start nyt spil</button>
-		<button id="ned" onclick="antalFors()" type="button">nedtæller</button>
-		<p id="length"></p>
-		<p id="hiddenWord"></p>
-		<p id="hiddenWordUnderline"></p>
+		<button id="start" type="button">Start nyt spil</button> <!-- starter nyt spil-->
+		<p id="tema"></p> <!-- Fortæller hvor længden på ordet-->
+		<p id="length"></p> <!-- Fortæller hvor længden på ordet-->
+		<p id="hiddenWord"></p> <!-- Viser de ord, som bliver skrevet-->
+		<p id="hiddenWordUnderline"></p> <!-- Viser _ under-->
+		<br>
+		<p id="antal" class="center"></p> <!-- Fortæller hvor mange liv der er tilbage-->
+		<p id="antal2" class="center"></p>
 	</div>
 
-	<div class="center">
-		<p>Antal forsøg tilbage:</p>
-		<p id="antalfor">8</p>
-	<div class="center">
-		<p id="wordList" onclick="addWord()">?</p>
-	</div>
-	<div id="alfabetet">
-		<p>A</p>
-		<p>B</p>
-	  <p>C</p>
-		<p>D</p>
-		<p>E</p>
-		<p>F</p>
-		<p>G</p>
-		<p>H</p>
-		<p>I</p>
-		<p>J</p>
-		<p>K</p>
-		<p>L</p>
-		<p>M</p>
-		<p>N</p>
-		<p>O</p>
-		<p>P</p>
-		<p>Q</p>
-		<p>R</p>
-		<p>S</p>
-		<p>T</p>
-		<p>S</p>
-		<p>U</p>
-		<p>V</p>
-		<p>W</p>
-		<p>X</p>
-		<p>Y</p>
-		<p>Z</p>
-		<p>Æ</p>
-		<p>Ø</p>
+	<div id="alfabetet" class="center"> </div>
+
+
+	<div id="won">
+			<form action="#">
+			    <input id="name" type="text" name="name" placeholder="Navn" minlength="2">
+				<input id="time" type="text" name="time" value="" readonly>
+				<input id="save" type="submit" name="submit" value="Gem din highscore">
+			</form>
 	</div>
 
-</div>
+</section>
+
+<article>
+	<h3>Highscore</h3>
+	<p id="name" class="center"></p>
+	<p id="score" class="center"></p>
+</article>
+
 <style>
-.center {
-	text-align: center;
-}
-#alfabetet {
-	display: flex;
-	justify-content: space-around;
-}
-#wordList {
-	opacity: .1;
-}
+	*{
+		font-family: monospace;
+	}
+	#hangman {
+		position:fixed;
+		top:100px;
+		left:0;
+		width:100%;
+		height:100%;
+		background-color: #FF9587;	
+		font-size: 18px;
+	}
+	#hangman p{
+		margin: 5%;
+	}
 
+	#hiddenWord, #hiddenWordUnderline { font-size: 3em; }
+	
+	article{
+		padding: 10px;
+		border: 1px #a4f8a7 solid;
+		background-color: #fff;
+		font-size: 16px;
+		float: right;
+		border-radius: 5px;
+		z-index: 1;
+		position: relative;
+	}
 
+	.hangmanSec{
+		width: 700px;
+		height: 600px;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 4%;
+		background-color: #fff;
+		border-radius: 5px;
+		position: absolute;
+	}
+	.center {
+		text-align: center;
+	}
+	#start{
+		padding: 10px;
+		border: 3px #a4f8a7 solid;
+		background-color: #fff;
+		font-size: 16px;
+	}
+	#won{
+		width: 700px;
+		height: 600px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 4%;
+		background-color: #fff;
+		border-radius: 5px;
+		position: absolute;
+		z-index: 1;
+		display:none;
+	}
+
+	input{
+		padding: 5px;
+    	font-size: 16px;
+	}
+	#time{
+		display: none;
+	}
+	.wordList {
+		opacity: .5;
+		cursor: pointer;
+	}
+	.what {
+		display: none;
+		overflow: hidden;
+	}
 </style>
 
 <script>
-
-/**
- * nQuery, *the* JS Framework
- */
+"use strict";
+//nQuery, *the* JS Framework
 var $ = function (foo) {
     return document.getElementById(foo);    // save keystrokes
 }
 
-
-const hangWord = ['svømmehal', 'dronning', 'dannebrog', 'chokoladekage', 'marathon'];
-
-//Tilføj nye ord til hangWord, aktiv ved klip på ?
-function addWord() {
-	hangWord.push((prompt('Tilføj nyt ord til listen')));
-	document.getElementById("wordList").innerHTML = hangWord;
-};
+const hangWord = ['pizza', 'snøfler', 'islagkage', 'chokoladekage', 'pandekage', 'falafel', 'sandwich', 'chips', 'flæskesteg'];
 
 //Vælg et tilfældigt ord fra hangWord
+document.getElementById("start").addEventListener("click", getNewWord);
+
 function getNewWord(){
+	//Vælger et tilfældigt ord
 	let randomItem = hangWord[Math.floor(Math.random()*hangWord.length)];
 	let n = randomItem.length;
+	document.getElementById("length").append('Ordet har ' + n + ' bogstaver');
+	let gemmeord;
 
-	document.getElementById("length").innerHTML = n;
+	//Udskriv hvor mange tegn der er på det tilfældige ord
+	document.getElementById("hiddenWord").innerHTML = '';
 
-//Udskriv hvor mange tegn der er på det tilfældige ord
-for (var i = 0; i < randomItem.length; i++) {
+	gemmeord = '';
+	for (var i = 0; i < randomItem.length; i++) {
+		console.log(randomItem.charAt(i));
+		document.getElementById("hiddenWord").innerHTML += '-';
+		gemmeord += '-';
+		//skal kobles til bogstaverne , så når man taster dem på tastaturet så erstatter de underline - Tinna
+	}
 
-	console.log(randomItem.charAt(i));
-	document.getElementById("hiddenWord").innerHTML = (randomItem.charAt(i));
-	document.getElementById("hiddenWordUnderline").innerHTML = '_';
-}
-}
+	//Udskriver temaet, samt gør sådan at man ikke kan klikke på knappen
+	document.getElementById("tema").append('Temaet er: mad & snacks');
+	document.getElementById("start").removeEventListener('click', getNewWord);
+
+	//Antal forsøg tilbage
+	
+	$("antal").innerHTML = " ";
+	var p = 0;
+	const guess = function() {
+		if (p == 10) {
+			$("antal").innerHTML = "Du har tabt 😢 <br> spil igen";
+		} else if (p < 10) {
+			p++;
+			$("antal").innerHTML = 'Du har brugt ' + p + ' forsøg';
+		}	
+	}
+
+	
 
 
-//Antal forsøg tilbage
-let fors = 8;
-function antalFors(){
-		if (fors > 1) {
-			fors -= 1;
-			return fors;
+	//press a key
+	window.addEventListener("keydown", event => { 
+		var letter = event.key; 
+
+		let w = '';
+		for (let i = 0; i < randomItem.length; i++) {
+			if (gemmeord.charAt(i) !== '-') {
+				w += gemmeord.charAt(i);
+			} else if (randomItem.charAt(i) === letter) {
+				w += letter;
+			} else if (randomItem.charAt(i) === gemmeord.charAt(i)){
+				youWon();
+			} else {
+				w += '-';
+				guess();
+			}
 		}
-		else {
-			return 'ikke flere forsøg, spillet er tabt';
-		}
+		document.getElementById("hiddenWord").innerHTML = w;
+		gemmeord = w;
+	  
+	});
+
+
+}//getNewWord
+
+
+
+
+//Cookies
+var score = 30;
+document.getElementById("score").append(score); //skriver highscore
+
+const validate = function() {    	
+	if ($('name').value.length < 2) {
+		window.alert('ugyldigt navn');
+		return false;
+	}
+	createCookie($('name').value, score, 7);
+	return true;
 }
-//Aktiveres ved tryk på knappen med id ned
-document.getElementById("ned").addEventListener("click", function(){
-document.getElementById("antalfor").innerHTML = antalFors();
-});
 
+const init = function() {
+	console.log(document.cookie);
+	$('save').addEventListener('click', validate);
+}
+window.addEventListener('load', init);
 
-console.log(antalFors());
-console.log(antalFors());
-console.log(antalFors());
-console.log(antalFors());
-console.log(antalFors());
-console.log(antalFors());
-console.log(antalFors());
-console.log(antalFors());
+// Hvis man vinder
+function youWon(){
+	document.getElementById("won").style.display = "block";
+}
+document.getElementById("won").append(youWon);
 
-
+//Hvad er reglerne til hangman ?
+var rules = document.getElementsByClassName("wordList");
+var i;
+for (i = 0; i < rules.length; i++) {
+	rules[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var what = this.nextElementSibling;
+		if (what.style.display === "block") {
+			what.style.display = "none";
+		} else {
+			what.style.display = "block";
+		}
+	});
+}
 
 </script>
