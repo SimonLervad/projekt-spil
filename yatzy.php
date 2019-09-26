@@ -90,6 +90,9 @@ table, th, td {
 						<tr>
 							<td>1'ere <span>5</span></td>
 							<td id="one">
+								0
+							</td>
+							<td id="one-b">
 								<button onclick="enere()">
 										Vælg 1'er
 								</button>
@@ -98,6 +101,9 @@ table, th, td {
 						<tr>
 								<td>2'ere <span>10</span></td>
 								<td id="two">
+									0
+								</td>
+								<td id="two-b">
 									<button onclick="toer()">
 											Vælg 2'er
 									</button>
@@ -106,6 +112,9 @@ table, th, td {
 						<tr>
 								<td>3'ere <span>15</span></td>
 								<td id="three">
+									0
+								</td>
+								<td id="three-b">
 									<button onclick="trer()">
 											Vælg 3'er
 									</button>
@@ -114,6 +123,9 @@ table, th, td {
 						<tr>
 								<td>4'ere <span>20</span></td>
 								<td id="four">
+									0
+								</td>
+								<td id="four-b">
 									<button onclick="firer()">
 											Vælg 4'er
 									</button>
@@ -122,6 +134,9 @@ table, th, td {
 						 <tr>
 										<td>5'ere <span>25</span></td>
 										<td id="five">
+											0
+										</td>
+										<td id="five-b">
 											<button onclick="femer()">
 													Vælg 5'er
 											</button>
@@ -130,6 +145,9 @@ table, th, td {
 								<tr>
 										<td>6'ere <span>30</span></td>
 										<td id="six">
+											0
+										</td>
+										<td id="six-b">
 											<button onclick="sekser()">
 													Vælg 6'er
 											</button>
@@ -146,6 +164,9 @@ table, th, td {
 						<tr>
 								<td>1 par <span>12</span></td>
 								<td id="onePair">
+									0
+								</td>
+								<td id="par-b">
 									<button onclick="toEns()">
 											Vælg to ens
 									</button>
@@ -157,11 +178,21 @@ table, th, td {
 						</tr>
 						<tr>
 								<td>3 ens <span>18</span></td>
-								<td id="threePair"> </td>
+								<td id="threePair">0</td>
+								<td id="trepar-b">
+									<button onclick="treEns()">
+											Vælg tre ens
+									</button>
+								</td>
 						</tr>
 						<tr>
 								<td>4 ens <span>24</span></td>
-								<td id="fourPair"> </td>
+								<td id="fourPair">0</td>
+								<td id="firepar-b">
+									<button onclick="fireEns()">
+											Vælg fire ens
+									</button>
+								</td>
 						</tr>
 						<tr>
 								<td>Lille straight <span>15</span></td>
@@ -172,7 +203,7 @@ table, th, td {
 								<td id="big"> </td>
 						</tr>
 						<tr>
-								<td>Hus <span>28</span></td>
+								<td>Fuldt hus <span>28</span></td>
 								<td id="house"> </td>
 						</tr>
 						<tr>
@@ -213,8 +244,7 @@ var $ = function (foo) {
 
 //Array for de 5 terninger
 let dice = [0, 0, 0, 0, 0];
-
-
+let result = [0, 0, 0, 0, 0, 0, 0];
 
 //Array for at låse terninger
 let shadow = [false, false, false, false, false];
@@ -224,19 +254,22 @@ var rollthedice = function(n) {
 	return Math.floor(Math.random() * 6) + 1;
 }
 
-
-
-
-var play = function(arr, arrs) {
+var play = function(arr, arrs, res) {
 	for (let i = 0; i < arr.length; i++) {
 		if (!arrs[i]) {
 			arr[i] = rollthedice(6);
 		}
 	}
+
+	res = [0, 0, 0, 0, 0, 0, 0];
+	console.log(arr);
+	for (let i = 0; i < arr.length; i++) {
+		res[0] += arr[i];
+		res[arr[i]] += 1;
+	}
+	console.log(res);
+	return res;
 }
-
-
-
 
 //Reset terningerne
 const resetArrays = function(arr, arrs) {
@@ -246,7 +279,6 @@ const resetArrays = function(arr, arrs) {
 		$('dice' + (i + 1)).style.backgroundColor = 'gray';
 	}
 }
-
 
 function roll() {
 	let die1 = $('dice1');
@@ -276,24 +308,24 @@ function roll() {
 
 //Slår terning 3 gange og giver besked hvis man ikke kan slå mere
 let count = 0;
-
+let sum = 0;
 function clicks() {
 	if (count < 3) {
-		  play(dice, shadow);
+		  result = play(dice, shadow, result);
 			count++;
 			let button = $('btn');
 			let display = $('displayTal');
 			display.innerHTML = "Du har kastet terningerne " + count + " " + "gange ud af 3 mulige";
-} else {
-	$("displayTal").innerHTML = "Du kan ikke slå flere gange";
-	$("btn").removeEventListener('click', button);
-}
+	} else {
+		$("displayTal").innerHTML = "Du kan ikke slå flere gange";
+		$("btn").removeEventListener('click', button);
+	}
 }
 
 //Starter en ny omgang
 function nyRunde() {
 	count = 0;
-	resetArrays(dice,shadow);
+	resetArrays(dice, shadow);
 	$("displayTal").innerHTML = "Du har ikke kastet terninger endnu";
 }
 
@@ -319,6 +351,57 @@ function addSum() {
 */
 //Ligger alle slag sammen kan ikke output som et nummer
 function addSum() {
+	var num1 = Number($("one").innerHTML) ? Number($("one").innerHTML) : 0;
+	var num2 = Number($("two").innerHTML) ? Number($("two").innerHTML) : 0;
+	var num3 = Number($("three").innerHTML) ? Number($("three").innerHTML) : 0;
+	var num4 = Number($("four").innerHTML) ? Number($("four").innerHTML) : 0;
+	var num5 = Number($("five").innerHTML) ? Number($("five").innerHTML) : 0;
+	var num6 = Number($("six").innerHTML) ? Number($("six").innerHTML) : 0;
+	var sum = num1 + num2 + num3 + num4 + num5 + num6;
+	$("upSum").innerHTML = sum;
+}
+
+//en til 6
+function enere() {
+	$('one').innerHTML = result[1];
+	$("one-b").style.display = "none";
+	addSum();
+	nyRunde();
+}
+function toer() {
+	$('two').innerHTML =  result[2] * 2;
+	$("two-b").style.display = "none";
+	addSum();
+	nyRunde();
+}
+
+function trer() {
+	$('three').innerHTML = result[3] * 3;
+	$("three-b").style.display = "none";
+	addSum();
+	nyRunde();
+}
+function firer() {
+	$('four').innerHTML = result[4] * 4;
+	$("four-b").style.display = "none";
+	addSum();
+	nyRunde();
+}
+function femer() {
+	$('five').innerHTML = result[5] * 5;
+	$("five-b").style.display = "none";
+	addSum();
+	nyRunde();
+}
+function sekser() {
+	$('six').innerHTML = result[6] * 6;
+	$("six-b").style.display = "none";
+	addSum();
+	nyRunde();
+}
+
+// Del sum (Ligger alle slag sammen kan ikke output som et nummer)
+function addSum() {
 	var num1 = Number($("one").innerHTML);
 	var num2 = Number($("two").innerHTML);
 	var num3 = Number($("three").innerHTML);
@@ -327,80 +410,51 @@ function addSum() {
 	var num6 = Number($("six").innerHTML);
 	var sum = num1 + num2 + num3 + num4 + num5 + num6;
 	$("upSum").innerHTML = sum;
-}
-
-//en til 6
-function enere() {
-	let x = 1;
-	let y = 0;
-	for (let i = 0; i < dice.length; i++) {
-		if (x === dice[i]) {
-			y = y + x;
-		}
-		$('one').innerHTML = y;
-
-		nyRunde();
-		addSum();
-	}
-}
-function toer() {
-	let x = 2;
-	let y = 0;
-	for (let i = 0; i < dice.length; i++) {
-		if (x === dice[i]) {
-			y = y + x;
-		}
-		$('two').innerHTML = y;
-		nyRunde();
-		addSum();
-	}
-}
-function trer() {
-	let x = 3;
-	let y = 0;
-	for (let i = 0; i < dice.length; i++) {
-		if (x === dice[i]) {
-			y = y + x;
-		}
-		$('three').innerHTML = y;
-		nyRunde();
-	}
-}
-function firer() {
-	let x = 4;
-	let y = 0;
-	for (let i = 0; i < dice.length; i++) {
-		if (x === dice[i]) {
-			y = y + x;
-		}
-		$('four').innerHTML = y;
-		nyRunde();
-	}
-}
-function femer() {
-	let x = 5;
-	let y = 0;
-	for (let i = 0; i < dice.length; i++) {
-		if (x === dice[i]) {
-			y = y + x;
-		}
-		$('five').innerHTML = y;
-		nyRunde();
-	}
-}
-function sekser() {
-	let x = 6;
-	let y = 0;
-	for (let i = 0; i < dice.length; i++) {
-		if (x === dice[i]) {
-			y = y + x;
-		}
-		$('six').innerHTML = y;
-		nyRunde();
+	if (sum > 62) {
+		$("bonus").innerHTML = "50";
+	} else {
+		$("bonus").innerHTML = "0";
 	}
 }
 
 // 2 ens
+function toEns() {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] >= 2) {
+			par = i * 2;
+			$("onePair").innerHTML = par;
+			$("par-b").style.display = "none";
+			break;
+			}
+		}
+	nyRunde(); 
+	}
+
+function treEns() {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] >= 3) {
+			triple = i * 3;
+			$("threePair").innerHTML = triple;
+			$("trepar-b").style.display = "none";
+			break;
+			}
+		}
+	nyRunde();
+	}
+
+function fireEns() {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] >= 4) {
+			quatro = i * 4;
+			$("fourPair").innerHTML = quatro;
+			$("firepar-b").style.display = "none";
+			break;
+			}
+		} 
+	nyRunde();
+	}
+
+
 /*
 function toEns(x) {
 
@@ -414,9 +468,20 @@ function toEns(x) {
 	}
 }
 */
+/*
+function toPar() {
+	let x = 1;
+	let y = 2;
+	let z = 3;
+	let a = 4;
+	let b = 5;
+	let c = 6;
 
-
-
+	for (let i = 0; i < dice.length; i++) {
+		if ( )
+	}
+}*/
+/*
 function toEns() {
 	var y = 0;
 	x = 1;
@@ -482,14 +547,22 @@ function toEns() {
 	}
  nyRunde();
 }
+*/
+//Fuldt hus (3ens og 2 ens)
+
+
 
 
 // Får Yatzy
 function getYatzy() {
 	if(dice[0] === dice[1] && dice[0] === dice[2] && dice[0] === dice[3] && dice[0] === dice[4]){
 		let y = 50 + dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
+		
 		$('yatzytabel').innerHTML = y;
-	} nyRunde();
+	} else {
+		$('yatzytabel').innerHTML = 0;
+	}
+	 nyRunde();
 	}
 
 // Får Chancen
