@@ -159,18 +159,19 @@ startStop = function() {
     		window.alert('ugyldigt navn');
 			return false;
 		}
-		createCookie(Cookie, $('name').value, $('time').value, 0.0126844);
+		createCookie($('name').value, $('time').value, 0.0126844);
 		return true;
 	}
-	var amount = document.cookies;
 	
 	const init = function() {
 		$("knap").addEventListener('click', validate);	
 		$("knap").addEventListener('click', gues);
 		$('save').addEventListener('click', save);
-		document.getElementById('highscores').innerHTML = amount;
+		document.getElementById("score").append(document.cookie);
 	}
 	window.addEventListener('load', init);
+	
+	
 </script>
 </body>
 </html>
