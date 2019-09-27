@@ -203,11 +203,19 @@ table, th, td {
 						</tr>
 						<tr>
 								<td>Lille straight <span>15</span></td>
-								<td id="small"> </td>
+								<td id="small">0</td>
+								<td id="small-b">
+									<button onclick="smallStraight()">
+											Vælg lille straight
+									</button>
 						</tr>
 						<tr>
 								<td>Stor straight <span>20</span></td>
-								<td id="big"> </td>
+								<td id="big">0</td>
+								<td id="big-b">
+									<button onclick="bigStraight()">
+											Vælg stor straight
+									</button>
 						</tr>
 						<tr>
 								<td>Fuldt hus <span>28</span></td>
@@ -259,6 +267,7 @@ var $ = function (foo) {
 //Array for de 5 terninger
 let dice = [0, 0, 0, 0, 0];
 let result = [0, 0, 0, 0, 0, 0, 0];
+console.log(result);
 
 //Array for at låse terninger
 let shadow = [false, false, false, false, false];
@@ -441,7 +450,8 @@ function toEns() {
 			break;
 			}
 		}
-	nyRunde(); 
+	addSum();
+	nyRunde();
 	}
 
 function totoEns() {
@@ -459,7 +469,7 @@ function totoEns() {
 			break;
 		}
 	}
-	nyRunde(); 
+	nyRunde();
 }
 
 function house() {
@@ -481,7 +491,7 @@ function house() {
 			break;
 		}
 	}
-	nyRunde(); 
+	nyRunde();
 }
 
 function treEns() {
@@ -504,9 +514,33 @@ function fireEns() {
 			$("firepar-b").style.display = "none";
 			break;
 			}
-		} 
+		}
 	nyRunde();
 	}
+
+function smallStraight() {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] <= 1 && result[0] == 15) {
+
+				$("small").innerHTML = 15;
+				$("small-b").style.display = "none";
+		}
+		nyRunde();
+}
+}
+
+function bigStraight() {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] <= 1 && result[0] == 20) {
+
+				$("big").innerHTML = 20;
+				$("big-b").style.display = "none";
+		}
+		nyRunde();
+}
+}
+
+
 
 
 /*
@@ -611,7 +645,7 @@ function toEns() {
 function getYatzy() {
 	if(dice[0] === dice[1] && dice[0] === dice[2] && dice[0] === dice[3] && dice[0] === dice[4]){
 		let y = 50 + dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
-		
+
 		$('yatzytabel').innerHTML = y;
 	} else {
 		$('yatzytabel').innerHTML = 0;
@@ -626,8 +660,6 @@ function getYatzy() {
 		nyRunde();
 	}
 
-
-
 let initialize = function() {
 	$("dice1").addEventListener("click", filla);
 	$("dice2").addEventListener("click", filla);
@@ -638,9 +670,5 @@ let initialize = function() {
 
 }
 window.addEventListener("load", initialize);
-
-
-
-
 
 </script>
