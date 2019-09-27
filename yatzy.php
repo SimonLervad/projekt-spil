@@ -238,18 +238,30 @@ var $ = function (foo) {
 //Array for de 5 terninger
 let dice = [0, 0, 0, 0, 0];
 let result = [0, 0, 0, 0, 0, 0, 0];
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 //Array for at låse terninger
 let shadow = [false, false, false, false, false];
 //Kast terningerne
 var rollthedice = function(n) {
 	return Math.floor(Math.random() * 6) + 1;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 var play = function(arr, arrs, res) {
 	for (let i = 0; i < arr.length; i++) {
 		if (!arrs[i]) {
 			arr[i] = rollthedice(6);
 		}
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 	res = [0, 0, 0, 0, 0, 0, 0];
 	console.log(arr);
 	for (let i = 0; i < arr.length; i++) {
@@ -259,6 +271,10 @@ var play = function(arr, arrs, res) {
 	console.log(res);
 	return res;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 //Reset terningerne
 const resetArrays = function(arr, arrs) {
 	for (let i = 0; i < arr.length; i++) {
@@ -267,6 +283,10 @@ const resetArrays = function(arr, arrs) {
 		$('dice' + (i + 1)).style.backgroundColor = 'gray';
 	}
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function roll() {
 	let die1 = $('dice1');
 	let die2 = $('dice2');
@@ -342,6 +362,10 @@ function addSum() {
 	var sum = num1 + num2 + num3 + num4 + num5 + num6;
 	$("upSum").innerHTML = sum;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 //en til 6
 function enere() {
 	$('one').innerHTML = result[1];
@@ -355,6 +379,10 @@ function toer() {
 	addSum();
 	nyRunde();
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function trer() {
 	$('three').innerHTML = result[3] * 3;
 	$("three-b").style.display = "none";
@@ -379,6 +407,10 @@ function sekser() {
 	addSum();
 	nyRunde();
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 // Del sum (Ligger alle slag sammen kan ikke output som et nummer)
 function addSum() {
 	var num1 = Number($("one").innerHTML);
@@ -395,6 +427,10 @@ function addSum() {
 		$("bonus").innerHTML = "0";
 	}
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 // 2 ens
 function toEns() {
 	for (let i = result.length; i >= 1; i--) {
@@ -405,8 +441,14 @@ function toEns() {
 			break;
 			}
 		}
+<<<<<<< HEAD
 	nyRunde();
 	}
+=======
+	nyRunde(); 
+	}
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function totoEns() {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] >= 2) {
@@ -422,8 +464,14 @@ function totoEns() {
 			break;
 		}
 	}
+<<<<<<< HEAD
 	nyRunde();
 }
+=======
+	nyRunde(); 
+}
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function house() {
 	for (let i = result.length-1; i >= 1; i--) {
 		if (result[i] === 3) {
@@ -443,8 +491,14 @@ function house() {
 			break;
 		}
 	}
+<<<<<<< HEAD
 	nyRunde();
 }
+=======
+	nyRunde(); 
+}
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function treEns() {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] >= 3) {
@@ -456,6 +510,10 @@ function treEns() {
 		}
 	nyRunde();
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function fireEns() {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] >= 4) {
@@ -464,9 +522,17 @@ function fireEns() {
 			$("firepar-b").style.display = "none";
 			break;
 			}
+<<<<<<< HEAD
 		}
 	nyRunde();
 	}
+=======
+		} 
+	nyRunde();
+	}
+
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 /*
 function toEns(x) {
 	let y = 0;
@@ -487,6 +553,10 @@ function toPar() {
 	let a = 4;
 	let b = 5;
 	let c = 6;
+<<<<<<< HEAD
+=======
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 	for (let i = 0; i < dice.length; i++) {
 		if ( )
 	}
@@ -559,11 +629,22 @@ function toEns() {
 }
 */
 //Fuldt hus (3ens og 2 ens)
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 // Får Yatzy
 function getYatzy() {
 	if(dice[0] === dice[1] && dice[0] === dice[2] && dice[0] === dice[3] && dice[0] === dice[4]){
 		let y = 50 + dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 		$('yatzytabel').innerHTML = y;
 	} else {
 		$('yatzytabel').innerHTML = 0;
