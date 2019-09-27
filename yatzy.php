@@ -174,7 +174,14 @@ table, th, td {
 						</tr>
 						<tr>
 								<td>2 par <span>22</span></td>
-								<td id="twoPair"> </td>
+								<td id="twoPair">
+									0
+								</td>
+								<td id="twopar-b">
+									<button onclick="totoEns()">
+										Vælg to * to ens
+									</button>
+								</td>
 						</tr>
 						<tr>
 								<td>3 ens <span>18</span></td>
@@ -204,7 +211,14 @@ table, th, td {
 						</tr>
 						<tr>
 								<td>Fuldt hus <span>28</span></td>
-								<td id="house"> </td>
+								<td id="house">
+									0
+								</td>
+								<td id="house-b">
+									<button onclick="house()">
+										house
+									</button>
+								</td>
 						</tr>
 						<tr>
 								<td>Chance <span>30</span></td>
@@ -429,6 +443,46 @@ function toEns() {
 		}
 	nyRunde(); 
 	}
+
+function totoEns() {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] >= 2) {
+			par = i * 2;
+			for (let j = 1; j < result.length; j++) {
+				if (result[j] >= 2) {
+					par = par + j * 2;
+					$("twoPair").innerHTML = par;
+					$("twopar-b").style.display = "none";
+					break;
+				}
+			}
+			break;
+		}
+	}
+	nyRunde(); 
+}
+
+function house() {
+	for (let i = result.length-1; i >= 1; i--) {
+		if (result[i] === 3) {
+			house = i * 3;
+			console.log(house)
+			console.log(i)
+			for (let j = 1; j < result.length; j++) {
+				if (result[j] === 2) {
+					house = house + (j * 2);
+					console.log(house)
+					console.log(i)
+					$("house").innerHTML = house;
+					$("house-b").style.display = "none";
+					break;
+				}
+			}
+			break;
+		}
+	}
+	nyRunde(); 
+}
 
 function treEns() {
 	for (let i = result.length; i >= 1; i--) {
