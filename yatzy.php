@@ -1,20 +1,25 @@
 <?php include 'head.php'?>
+
 <style>
 #yatzy {
 background-color: #87C1FF;
 }
+
 span {
 	float: right;
 }
+
 #knapper{
 	display: flex;
 	justify-content: center;
 }
+
 button {
 	height: 50px;
 	width: 80px;
 	margin: 15px;
 }
+
 #terninger {
 	display: flex;
 	justify-content: center;
@@ -30,27 +35,35 @@ button {
 	margin: 5px;
 	background-color: gray;
 }
+
 #text p {
+
 	text-align: center;
 }
+
 table, th, td {
 		border: 1px #000 solid;
 		padding: 5px;
 		margin: 0 auto;
 		border-collapse: collapse;
 }
+
+
 </style>
 <!--************************** STYLE ******************************* -->
+
 <div id="yatzy">
 	<div class="header">
 		<h2>You are playing Yatzy</h2>
 	</div>
+
 <main>
 <section class="sektion">
 	<div id="knapper">
 		<button id="btn" onclick="clicks(); roll();">Slå terninger</button>
 		<button id="nyOmgang" onclick="nyRunde();">Start ny omgang</button>
 	</div>
+
 		<div id="terninger">
 			<div id="dice1" class="dice">?</div>
 			<div id="dice2" class="dice">?</div>
@@ -58,10 +71,13 @@ table, th, td {
 			<div id="dice4" class="dice">?</div>
 			<div id="dice5" class="dice">?</div>
 		</div>
+
 		<div id="text">
 			<p>Samlet sum for dit kast er: </p>
 			<p id="total">0</p>
 			<p id="yatzy1"></p>
+
+
 			<p id="displayTal">Du har ikke kastet terninger endnu</p>
 		</div>
 	</section>
@@ -226,42 +242,39 @@ table, th, td {
 						</tr>
 					</table>
 	</section>
+
+
 </main>
 </div>
+
 <script>
+
 /**
  * nQuery, *the* JS Framework
  */
 var $ = function (foo) {
     return document.getElementById(foo);    // save keystrokes
 }
+
 //Array for de 5 terninger
 let dice = [0, 0, 0, 0, 0];
 let result = [0, 0, 0, 0, 0, 0, 0];
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 //Array for at låse terninger
 let shadow = [false, false, false, false, false];
+
 //Kast terningerne
 var rollthedice = function(n) {
 	return Math.floor(Math.random() * 6) + 1;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 var play = function(arr, arrs, res) {
 	for (let i = 0; i < arr.length; i++) {
 		if (!arrs[i]) {
 			arr[i] = rollthedice(6);
 		}
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 	res = [0, 0, 0, 0, 0, 0, 0];
 	console.log(arr);
 	for (let i = 0; i < arr.length; i++) {
@@ -271,10 +284,7 @@ var play = function(arr, arrs, res) {
 	console.log(res);
 	return res;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 //Reset terningerne
 const resetArrays = function(arr, arrs) {
 	for (let i = 0; i < arr.length; i++) {
@@ -283,16 +293,14 @@ const resetArrays = function(arr, arrs) {
 		$('dice' + (i + 1)).style.backgroundColor = 'gray';
 	}
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function roll() {
 	let die1 = $('dice1');
 	let die2 = $('dice2');
 	let die3 = $('dice3');
 	let die4 = $('dice4');
 	let die5 = $('dice5');
+
 	let tot = $('total'); //viser samlet points
 	let yat = $('yatzy1'); // viser hvis du får yatzy
 /*
@@ -311,6 +319,7 @@ function roll() {
 	die5.innerHTML = dice[4];
 	tot.innerHTML = dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
 }
+
 //Slår terning 3 gange og giver besked hvis man ikke kan slå mere
 let count = 0;
 let sum = 0;
@@ -326,12 +335,14 @@ function clicks() {
 		$("btn").removeEventListener('click', button);
 	}
 }
+
 //Starter en ny omgang
 function nyRunde() {
 	count = 0;
 	resetArrays(dice, shadow);
 	$("displayTal").innerHTML = "Du har ikke kastet terninger endnu";
 }
+
 // Give en terning farve ved at klikke på den (først tjekker den om der er kastet min 1 gang)
 let filla = function(ev) {
 	if (count > 0) {
@@ -343,6 +354,7 @@ let filla = function(ev) {
 			ev.target.style.backgroundColor = "green";
 		}
 	}
+
 }
 //Ligger alle slag sammen
 /*
@@ -362,10 +374,7 @@ function addSum() {
 	var sum = num1 + num2 + num3 + num4 + num5 + num6;
 	$("upSum").innerHTML = sum;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 //en til 6
 function enere() {
 	$('one').innerHTML = result[1];
@@ -379,10 +388,7 @@ function toer() {
 	addSum();
 	nyRunde();
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function trer() {
 	$('three').innerHTML = result[3] * 3;
 	$("three-b").style.display = "none";
@@ -407,10 +413,7 @@ function sekser() {
 	addSum();
 	nyRunde();
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 // Del sum (Ligger alle slag sammen kan ikke output som et nummer)
 function addSum() {
 	var num1 = Number($("one").innerHTML);
@@ -427,10 +430,7 @@ function addSum() {
 		$("bonus").innerHTML = "0";
 	}
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 // 2 ens
 function toEns() {
 	for (let i = result.length; i >= 1; i--) {
@@ -441,14 +441,9 @@ function toEns() {
 			break;
 			}
 		}
-<<<<<<< HEAD
-	nyRunde();
-	}
-=======
 	nyRunde(); 
 	}
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function totoEns() {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] >= 2) {
@@ -464,14 +459,9 @@ function totoEns() {
 			break;
 		}
 	}
-<<<<<<< HEAD
-	nyRunde();
-}
-=======
 	nyRunde(); 
 }
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function house() {
 	for (let i = result.length-1; i >= 1; i--) {
 		if (result[i] === 3) {
@@ -491,14 +481,9 @@ function house() {
 			break;
 		}
 	}
-<<<<<<< HEAD
-	nyRunde();
-}
-=======
 	nyRunde(); 
 }
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function treEns() {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] >= 3) {
@@ -510,10 +495,7 @@ function treEns() {
 		}
 	nyRunde();
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 function fireEns() {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] >= 4) {
@@ -522,19 +504,14 @@ function fireEns() {
 			$("firepar-b").style.display = "none";
 			break;
 			}
-<<<<<<< HEAD
-		}
-	nyRunde();
-	}
-=======
 		} 
 	nyRunde();
 	}
 
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 /*
 function toEns(x) {
+
 	let y = 0;
 	for (let i = 0; i < dice.length; i++) {
 		if (x % 2 >= 0 ) {
@@ -553,10 +530,7 @@ function toPar() {
 	let a = 4;
 	let b = 5;
 	let c = 6;
-<<<<<<< HEAD
-=======
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 	for (let i = 0; i < dice.length; i++) {
 		if ( )
 	}
@@ -629,34 +603,31 @@ function toEns() {
 }
 */
 //Fuldt hus (3ens og 2 ens)
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 // Får Yatzy
 function getYatzy() {
 	if(dice[0] === dice[1] && dice[0] === dice[2] && dice[0] === dice[3] && dice[0] === dice[4]){
 		let y = 50 + dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
-<<<<<<< HEAD
-
-=======
 		
->>>>>>> a990891eb449b324aa4b8c611f37ab23501c2f91
 		$('yatzytabel').innerHTML = y;
 	} else {
 		$('yatzytabel').innerHTML = 0;
 	}
 	 nyRunde();
 	}
+
 // Får Chancen
 	function bonus() {
 		let y = dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
 		$('chance').innerHTML = y;
 		nyRunde();
 	}
+
+
+
 let initialize = function() {
 	$("dice1").addEventListener("click", filla);
 	$("dice2").addEventListener("click", filla);
@@ -664,6 +635,12 @@ let initialize = function() {
 	$("dice4").addEventListener("click", filla);
 	$("dice5").addEventListener("click", filla);
 	//$("1").addEventListener("click", resultat);
+
 }
 window.addEventListener("load", initialize);
+
+
+
+
+
 </script>
