@@ -4,6 +4,48 @@
 #yatzy {
 background-color: #87C1FF;
 }
+body {
+	background-color: #87C1FF;
+}
+
+.overskriftYatzy {
+	text-align: center;
+	padding-top: 8em;
+	padding-bottom: 2em;
+}
+
+.sektion {
+	display: flex;
+	flex-wrap: wrap;
+	float: left;
+	justify-content: center;
+
+}
+
+.sektion1 {
+
+	flex-wrap: wrap;
+
+	display: inline;
+	width: 500px
+}
+
+.sektion2 {
+
+	flex-wrap: wrap;
+
+	display: inline;
+	width: 500px
+}
+
+#text {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#the-end {
+	margin: 2em;
+}
 
 span {
 	float: right;
@@ -48,7 +90,7 @@ table, th, td {
 		border-collapse: collapse;
 }
 tr {width:600px;}
-th, td {width:200px;height:50px;}
+th, td {max-width:200px;height:50px;}
 tr td:nth-child(2) {
 	text-align:center;
 }
@@ -63,27 +105,20 @@ td button {
 
 </style>
 <!--************************** STYLE ******************************* -->
-
+<body>
 <div id="yatzy">
-	<div class="header">
-		<h2>You are playing Yatzy</h2>
+	<div class="overskriftYatzy">
+		<h2>Du spiller Yatzy</h2>
 	</div>
 
 <main>
 <section class="sektion">
-	<div id="knapper">
-		<button id="btn" onclick="clicks(); roll();">Slå terninger</button>
-		<a href="yatzy.php">
-		<button id="nyOmgang" onclick="nyRunde();">Start et nyt spil</button>
-		</a>
-	</div>
-
-		<div id="terninger">
-			<div id="dice1" class="dice">?</div>
-			<div id="dice2" class="dice">?</div>
-			<div id="dice3" class="dice">?</div>
-			<div id="dice4" class="dice">?</div>
-			<div id="dice5" class="dice">?</div>
+	<div class="sektion1">
+		<div id="knapper">
+			<button id="btn" onclick="clicks(); roll();">Kast terninger</button>
+			<a href="yatzy.php">
+			<button id="nyOmgang" onclick="nyRunde();">Start et nyt spil</button>
+			</a>
 		</div>
 
 		<div id="text">
@@ -94,12 +129,24 @@ td button {
 
 			<p id="displayTal">Du har ikke kastet terninger endnu</p>
 		</div>
+
+			<div id="terninger">
+				<div id="dice1" class="dice">?</div>
+				<div id="dice2" class="dice">?</div>
+				<div id="dice3" class="dice">?</div>
+				<div id="dice4" class="dice">?</div>
+				<div id="dice5" class="dice">?</div>
+			</div>
+
+
+		</div>
 	</section>
 	<section class="sektion">
+		<div class="sektion2">
 		<table>
 						<tr>
 							<th>Maxiumum points</th>
-							<th id="yourName">Navn</th>
+							<th id="yourName">Point</th>
 						</tr>
 						<tr>
 							<td>1'ere <span>5</span></td>
@@ -107,7 +154,7 @@ td button {
 								0
 							</td>
 							<td id="one-b">
-								<button onclick="enere()">
+								<button onclick="ikkeSlået()">
 										Vælg 1'er
 								</button>
 							</td>
@@ -168,7 +215,7 @@ td button {
 										</td>
 								</tr>
 						<tr>
-								<td><b>SUM</b></td>
+								<td><b>Sum</b></td>
 								<th id="upSum">0</th>
 						</tr>
 						<tr>
@@ -193,7 +240,7 @@ td button {
 								</td>
 								<td id="twopar-b">
 									<button onclick="totoEns()">
-										Vælg to * to ens
+										Vælg to par
 									</button>
 								</td>
 						</tr>
@@ -238,7 +285,7 @@ td button {
 								</td>
 								<td id="house-b">
 									<button onclick="house()">
-										house
+										Vælg fuldt hus
 									</button>
 								</td>
 						</tr>
@@ -265,24 +312,27 @@ td button {
 								</td>
 						</tr>
 						<tr>
-								<td><b>SUM</b></td>
+								<td><b>Total sum</b></td>
 								<th id="TOTAL">0</th>
 						</tr>
 					</table>
+					<div id="the-end">
+						<h2>Gem din score</h2>
+							<p id="end-result"></p>
+						<form>
+									<input type="text" name="name" placeholder="Name" minlength="2">
+							<input type="text" name="number" value="" readonly>
+							<input id="save" type="submit" name="submit" value="Gem din tid">
+						</form>
+					</div>
+					</div>
+		</div>
 	</section>
 
 
 </main>
-</div>
-<div id="the-end">
-	<h2>The end</h2>
-		<p id="end-result"></p>
-	<form>
-        <input type="text" name="name" placeholder="Name" minlength="2">
-		<input type="text" name="number" value="" readonly>
-		<input id="save" type="submit" name="submit" value="Gem din tid">
-	</form>
-</div>
+<body>
+
 <script>
 
 /**
@@ -293,20 +343,13 @@ var $ = function (foo) {
 }
 
 //Array for de 5 terninger
-let dice = [0, 0, 0, 0, 0];
+let dice = ['z', 0, 0, 0, 0];
 let result = [0, 0, 0, 0, 0, 0, 0];
 
 //Array for at låse terninger
 let shadow = [false, false, false, false, false];
 
-//Hvis man prøver at kaste terningerne inden der er slået
-function ikkeSlået(){
-if(dice = [0, 0, 0, 0, 0]){
-	alert('Kast terningerne først!');
-	} else {
-		enere()
-	}
-}
+
 
 //Kast terningerne
 var rollthedice = function(n) {
@@ -330,7 +373,14 @@ var play = function(arr, arrs, res) {
 	return res;
 }
 
-
+//Hvis man prøver at kaste terningerne inden der er slået
+function ikkeSlået(){
+if(dice[0] === 'z'){
+	alert('Kast terningerne først!');
+	} else {
+		enere()
+	}
+}
 
 //Reset terningerne
 const resetArrays = function() {
@@ -361,16 +411,9 @@ function roll() {
 		yat.innerHTML = '';
 	}
 */
-/*
-//Hvis man prøver at kaste terningerne inden der er slået
-function ikkeSlået(){
-if(dice = [0, 0, 0, 0, 0]){
-	alert('Kast terningerne først!');
-	} else {
-		enere()
-	}
-}
-*/
+
+
+
 	//Viser værdi på terning
 	die1.innerHTML = dice[0];
 	die2.innerHTML = dice[1];
