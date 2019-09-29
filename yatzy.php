@@ -154,7 +154,7 @@ td button {
 								0
 							</td>
 							<td id="one-b">
-								<button onclick="ikkeSlået()">
+								<button onclick="enere()">
 										Vælg 1'er
 								</button>
 							</td>
@@ -343,7 +343,7 @@ var $ = function (foo) {
 }
 
 //Array for de 5 terninger
-let dice = ['z', 0, 0, 0, 0];
+let dice = [0, 0, 0, 0, 0];
 let result = [0, 0, 0, 0, 0, 0, 0];
 
 //Array for at låse terninger
@@ -371,15 +371,6 @@ var play = function(arr, arrs, res) {
 	}
 	console.log(res);
 	return res;
-}
-
-//Hvis man prøver at kaste terningerne inden der er slået
-function ikkeSlået(){
-if(dice[0] === 'z'){
-	alert('Kast terningerne først!');
-	} else {
-		enere()
-	}
 }
 
 //Reset terningerne
@@ -470,47 +461,72 @@ let filla = function(ev) {
 }
 	//en til 6
 function enere() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	$('one').innerHTML = result[1];
 	$("one-b").style.display = "none";
 	addSum();
 	addSum();
 	nyRunde();
+	}
 }
 function toer() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	$('two').innerHTML =  result[2] * 2;
 	$("two-b").style.display = "none";
 	addSum();
 	addSum();
 	nyRunde();
+	}
 }
 
+
 function trer() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	$('three').innerHTML = result[3] * 3;
 	$("three-b").style.display = "none";
 	addSum();
 	addSum();
 	nyRunde();
+	}
 }
 function firer() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	$('four').innerHTML = result[4] * 4;
 	$("four-b").style.display = "none";
 	addSum();
 	addSum();
 	nyRunde();
+	}
 }
 function femer() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	$('five').innerHTML = result[5] * 5;
 	$("five-b").style.display = "none";
 	addSum();
 	addSum();
 	nyRunde();
+	}
 }
 function sekser() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	$('six').innerHTML = result[6] * 6;
 	$("six-b").style.display = "none";
 	addSum();
 	addSum();
 	nyRunde();
+	}
 }
 
 // Del sum (Ligger alle slag sammen kan ikke output som et nummer)
@@ -545,15 +561,19 @@ function addSum() {
 
 // 2 ens
 function toEns() {
-	for (let i = result.length; i >= 1; i--) {
-		if (result[i] >= 2) {
-			par = i * 2;
-			$("onePair").innerHTML = par;
-			$("par-b").style.display = "none";
-			break;
-		} else {
-			$("onePair").innerHTML = 0;
-			$("par-b").style.display = "none";
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
+		for (let i = result.length; i >= 1; i--) {
+			if (result[i] >= 2) {
+				par = i * 2;
+				$("onePair").innerHTML = par;
+				$("par-b").style.display = "none";
+				break;
+			} else {
+				$("onePair").innerHTML = 0;
+				$("par-b").style.display = "none";
+			}
 		}
 	}
 addSum();
@@ -561,6 +581,9 @@ nyRunde();
 }
 
 function totoEns() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	for (let i = result.length; i > 0; i--) {
 		if (result[i] > 1) {
 			par = i * 2;
@@ -580,11 +603,54 @@ function totoEns() {
 			$("twopar-b").style.display = "none";
 		}
 	}
+	}
+
+addSum();
+nyRunde();
+}
+
+function treEns() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] >= 3) {
+			triple = i * 3;
+			$("threePair").innerHTML = triple;
+			$("trepar-b").style.display = "none";
+			break;
+		} else {
+			$("threePair").innerHTML = 0;
+			$("trepar-b").style.display = "none";
+		}
+	}}
+addSum();
+nyRunde();
+}
+
+function fireEns() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
+	for (let i = result.length; i >= 1; i--) {
+		if (result[i] >= 4) {
+			quatro = i * 4;
+			$("fourPair").innerHTML = quatro;
+			$("firepar-b").style.display = "none";
+			break;
+		} else {
+			$("fourPair").innerHTML = 0;
+			$("firepar-b").style.display = "none";
+		}
+	}}
 addSum();
 nyRunde();
 }
 
 function smallStraight() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] <= 1 && result[0] == 15) {
 			$("small").innerHTML = 15;
@@ -593,12 +659,15 @@ function smallStraight() {
 			$("small").innerHTML = 0;
 			$("small-b").style.display = "none";
 		}
-	}
+	}}
 addSum();
 nyRunde();
 }
 
 function bigStraight() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	for (let i = result.length; i >= 1; i--) {
 		if (result[i] <= 1 && result[0] == 20) {
 				$("big").innerHTML = 20;
@@ -607,12 +676,15 @@ function bigStraight() {
 			$("big").innerHTML = 0;
 			$("big-b").style.display = "none";
 		}
-	}
+	}}
 addSum();
 nyRunde();
 }
 
 function house() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	for (let i = result.length-1; i >= 1; i--) {
 		if (result[i] === 3) {
 			house = i * 3;
@@ -633,45 +705,29 @@ function house() {
 			$("house").innerHTML = 0;
 			$("house-b").style.display = "none";
 		}
-	}
+	}}
 addSum();
 nyRunde();
 }
 
-function treEns() {
-	for (let i = result.length; i >= 1; i--) {
-		if (result[i] >= 3) {
-			triple = i * 3;
-			$("threePair").innerHTML = triple;
-			$("trepar-b").style.display = "none";
-			break;
-		} else {
-			$("threePair").innerHTML = 0;
-			$("trepar-b").style.display = "none";
+// Får Chancen
+function bonus() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
+		let y = dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
+		$('chance').innerHTML = y;
+		$('bonus-b').style.display = "none";
 		}
-	}
-addSum();
 nyRunde();
-}
-
-function fireEns() {
-	for (let i = result.length; i >= 1; i--) {
-		if (result[i] >= 4) {
-			quatro = i * 4;
-			$("fourPair").innerHTML = quatro;
-			$("firepar-b").style.display = "none";
-			break;
-		} else {
-			$("fourPair").innerHTML = 0;
-			$("firepar-b").style.display = "none";
-		}
-	}
 addSum();
-nyRunde();
 }
 
 // Får Yatzy
 function getYatzy() {
+	if(dice[0] === 0){
+		alert('Husk at slå med terningerne');
+	} else {
 	if(dice[0] === dice[1] && dice[0] === dice[2] && dice[0] === dice[3] && dice[0] === dice[4]){
 		let y = 50 + dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
 		if (dice[0] === 0) {
@@ -684,19 +740,11 @@ function getYatzy() {
 	} else {
 		$('yatzytabel').innerHTML = 0;
 		$('yatzy-b').style.display = "none";
-	}
+	}}
 addSum();
 nyRunde();
 }
 
-// Får Chancen
-function bonus() {
-	let y = dice[0] + dice[1] + dice[2] + dice[3] + dice[4];
-	$('chance').innerHTML = y;
-	$('bonus-b').style.display = "none";
-nyRunde();
-addSum();
-}
 const save = function() {
     	if ($('name').value.length < 2) {
     		window.alert('ugyldigt navn');
