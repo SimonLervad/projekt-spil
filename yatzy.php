@@ -16,26 +16,11 @@ body {
 
 .sektion {
 	display: flex;
-	flex-wrap: wrap;
-	float: left;
 	justify-content: center;
-
 }
 
 .sektion1 {
-
-	flex-wrap: wrap;
-
-	display: inline;
-	width: 500px
-}
-
-.sektion2 {
-
-	flex-wrap: wrap;
-
-	display: inline;
-	width: 500px
+	padding-bottom: 2em;
 }
 
 #text {
@@ -762,7 +747,6 @@ let initialize = function() {
 	$("dice5").addEventListener("click", filla);
 	$('save').addEventListener('click', save);
 	//$("1").addEventListener("click", resultat);
-
 }
 
 window.addEventListener("load", initialize);
