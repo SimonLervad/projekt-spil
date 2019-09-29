@@ -33,7 +33,7 @@ button {
 	padding: 10px;
 	text-align: center;
 	margin: 5px;
-	background-color: gray;
+	background-color: whitesmoke;
 }
 
 #text p {
@@ -73,7 +73,9 @@ td button {
 <section class="sektion">
 	<div id="knapper">
 		<button id="btn" onclick="clicks(); roll();">Slå terninger</button>
-		<button id="nyOmgang" onclick="nyRunde();">Start ny omgang</button>
+		<a href="yatzy.php">
+		<button id="nyOmgang" onclick="nyRunde();">Start et nyt spil</button>
+		</a>
 	</div>
 
 		<div id="terninger">
@@ -297,6 +299,15 @@ let result = [0, 0, 0, 0, 0, 0, 0];
 //Array for at låse terninger
 let shadow = [false, false, false, false, false];
 
+//Hvis man prøver at kaste terningerne inden der er slået
+function ikkeSlået(){
+if(dice = [0, 0, 0, 0, 0]){
+	alert('Kast terningerne først!');
+	} else {
+		enere()
+	}
+}
+
 //Kast terningerne
 var rollthedice = function(n) {
 	return Math.floor(Math.random() * 6) + 1;
@@ -319,13 +330,15 @@ var play = function(arr, arrs, res) {
 	return res;
 }
 
+
+
 //Reset terningerne
 const resetArrays = function() {
 	for (let i = 0; i < dice.length; i++) {
 		dice[i] = 0;
 		shadow[i] = false;
 		$('dice' + (i + 1)).innerHTML = '?';
-		$('dice' + (i + 1)).style.backgroundColor = 'gray';
+		$('dice' + (i + 1)).style.backgroundColor = 'whitesmoke';
 	} for (let j = result.length; j > 0; j--) {
 		result[j] = 0;
 	}
@@ -347,6 +360,16 @@ function roll() {
 	} else {
 		yat.innerHTML = '';
 	}
+*/
+/*
+//Hvis man prøver at kaste terningerne inden der er slået
+function ikkeSlået(){
+if(dice = [0, 0, 0, 0, 0]){
+	alert('Kast terningerne først!');
+	} else {
+		enere()
+	}
+}
 */
 	//Viser værdi på terning
 	die1.innerHTML = dice[0];
@@ -394,7 +417,7 @@ let filla = function(ev) {
 	if (count > 0) {
 		if(ev.target.style.backgroundColor === "green") {
 			shadow[ev.target.id.charAt(ev.target.id.length - 1) - 1] = false;
-			ev.target.style.backgroundColor = "gray";
+			ev.target.style.backgroundColor = "whitesmoke";
 		} else {
 			shadow[ev.target.id.charAt(ev.target.id.length - 1) - 1] = true;
 			ev.target.style.backgroundColor = "green";
@@ -491,7 +514,7 @@ function toEns() {
 		}
 	}
 addSum();
-nyRunde(); 
+nyRunde();
 }
 
 function totoEns() {
@@ -515,7 +538,7 @@ function totoEns() {
 		}
 	}
 addSum();
-nyRunde(); 
+nyRunde();
 }
 
 function smallStraight() {
@@ -569,7 +592,7 @@ function house() {
 		}
 	}
 addSum();
-nyRunde(); 
+nyRunde();
 }
 
 function treEns() {
@@ -614,7 +637,7 @@ function getYatzy() {
 		} else {
 			$('yatzytabel').innerHTML = y;
 			$('yatzy-b').style.display = "none";
-		} 
+		}
 	} else {
 		$('yatzytabel').innerHTML = 0;
 		$('yatzy-b').style.display = "none";
@@ -631,7 +654,7 @@ function bonus() {
 nyRunde();
 addSum();
 }
-const save = function() {    	
+const save = function() {
     	if ($('name').value.length < 2) {
     		window.alert('ugyldigt navn');
 			return false;
