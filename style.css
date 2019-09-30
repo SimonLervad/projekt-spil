@@ -243,7 +243,7 @@ input {
 #warning button {
 	width:250px;
 	border:1px solid black;
-	background-color:#232323;
+	background-color:#79EAD7;
 	color:green;
 	font-size:30px;
 	text-align:center;
@@ -252,7 +252,7 @@ input {
 }
 #warning button:hover {
 	box-shadow: inset 249.5px 0 0 0 green;
-	color:#232323;
+	color:#79EAD7;
 }
 .container {
     height: 300px;
