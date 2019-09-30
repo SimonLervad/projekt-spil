@@ -284,12 +284,12 @@ input {
 .buttons button {
 	width:400px;
 	padding:20px;
-	background-color:green;
+	background-color:#79EAD7;
 	border:1px solid black;
 	transition-duration: 0.5s;
 	font-size:25px;
 }
 .buttons button:hover {
 	box-shadow: inset 400px 0 0 0 black;
-	color:green;
+	color:#60BFAF;
 }
