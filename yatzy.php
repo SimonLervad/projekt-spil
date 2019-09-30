@@ -73,6 +73,7 @@ table, th, td {
 		padding: 5px;
 		margin: 0 auto;
 		border-collapse: collapse;
+		background-color: #f2f2f2;
 }
 tr {width:600px;}
 th, td {max-width:200px;height:50px;}
